@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Geral — Atendimento WhatsApp</title>
+  <meta name="description" content="Agende sua consulta pelo WhatsApp com a Alice, da Clínica Geral.">
+  <meta name="theme-color" content="#008069">
+  <link rel="icon" href="assets/clinic-avatar.png" type="image/png">
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+<div id="app" class="whatsapp-app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <header class="sidebar-header">
+      <div class="user-avatar">
+        <svg viewBox="0 0 212 212" width="40" height="40"><path fill="#6a7175" d="M106 0C47.5 0 0 47.5 0 106s47.5 106 106 106 106-47.5 106-106S164.5 0 106 0z"/><path fill="#cfd4d6" d="M106 45c16.6 0 30 13.4 30 30s-13.4 30-30 30-30-13.4-30-30 13.4-30 30-30zm0 135c-25 0-47.2-12.1-61.1-30.7C47.6 137 80.8 130 106 130s58.4 7 61.1 19.3C153.2 167.9 131 180 106 180z"/></svg>
+      </div>
+      <div class="header-actions">
+        <button title="Nova conversa" id="btnNewChat" aria-label="Nova conversa"><svg viewBox="0 0 24 24"><path d="M19 3H4.7C3.6 3 3 3.8 3 4.8V21l3.5-3.5h12.5c1 0 2-1.1 2-2.1V4.8C21 3.8 20 3 19 3zm-5 9.9H7V11h7v1.9zm3-4H7V7h10v1.9z"/></svg></button>
+        <div class="dropdown-wrapper">
+          <button title="Menu" id="btnSidebarMenu" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M12 7a2 2 0 100-4 2 2 0 000 4zm0 2a2 2 0 100 4 2 2 0 000-4zm0 6a2 2 0 100 4 2 2 0 000-4z"/></svg></button>
+          <div class="dropdown-menu" id="sidebarDropdown">
+            <button class="dropdown-item" id="menuNewChat"><svg viewBox="0 0 24 24"><path d="M19 3H4.7C3.6 3 3 3.8 3 4.8V21l3.5-3.5h12.5c1 0 2-1.1 2-2.1V4.8C21 3.8 20 3 19 3z"/></svg><span>Nova conversa</span></button>
+            <button class="dropdown-item" id="menuClearChat"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg><span>Limpar conversa</span></button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="menuToggleSound"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 8.5v7a4.5 4.5 0 002.5-3.5zM14 3.2v2.1a7 7 0 010 13.4v2.1A9 9 0 0014 3.2z"/></svg><span id="soundLabel">Som: Ligado</span></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="sidebar-search">
+      <div class="search-wrapper">
+        <svg viewBox="0 0 24 24"><path d="M15 13.8h-.6l-.2-.2A5.2 5.2 0 0015.4 10.2a5.2 5.2 0 10-5.2 5.2 5.2 5.2 0 003.4-1.3l.2.2v.6l4 4 1.2-1.2-4-4zm-4.8 0a3.6 3.6 0 110-7.2 3.6 3.6 0 010 7.2z"/></svg>
+        <input type="text" placeholder="Pesquisar ou começar uma nova conversa" readonly>
+      </div>
+    </div>
+    <div class="sidebar-contacts">
+      <div class="contact-item active" id="contactClinic">
+        <div class="contact-avatar"><img src="assets/clinic-avatar.png" alt="Clínica" width="49" height="49"></div>
+        <div class="contact-info">
+          <div class="contact-info-top">
+            <span class="contact-name">Clínica Geral</span>
+            <span class="contact-time unread" id="sidebarTime">agora</span>
+          </div>
+          <div class="contact-info-bottom">
+            <span class="contact-last-msg" id="sidebarLastMsg">Toque para iniciar conversa</span>
+            <span class="unread-badge" id="sidebarBadge" style="display:none">1</span>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-clinic-info">
+        <div class="clinic-info-title">Informações da clínica</div>
+        <div class="clinic-info-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5z"/></svg>
+          <div class="info-content"><div class="info-label">Endereço</div><div class="info-value">Centro empresarial praia da costa, Vila velha - ES</div></div>
+        </div>
+        <div class="clinic-info-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5H11v6l5.2 3.2.8-1.2-4.5-2.7V7z"/></svg>
+          <div class="info-content"><div class="info-label">Horário</div><div class="info-value">Seg-Sex 8h–18h • Sáb 8h–12h</div></div>
+        </div>
+        <div class="clinic-info-item">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 3a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm7 13H5v-.2c0-.6.3-1.2.8-1.6C7.5 15.8 9.6 15 12 15s4.5.8 6.2 2.2c.5.4.8 1 .8 1.6V19z"/></svg>
+          <div class="info-content"><div class="info-label">Especialidades</div><div class="info-value">Geriatria • Gastroenterologista</div></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CHAT PANEL -->
+  <main class="chat-panel" id="chatPanel">
+    <header class="chat-header">
+      <button class="back-btn" id="backBtn" aria-label="Voltar"><svg viewBox="0 0 24 24"><path d="M12 4l1.4 1.4L7.8 11H20v2H7.8l5.6 5.6L12 20l-8-8z"/></svg></button>
+      <div class="chat-header-avatar"><img src="assets/clinic-avatar.png" alt="Clínica" width="40" height="40"></div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">Clínica Geral</div>
+        <div class="chat-header-status" id="chatStatus">online</div>
+      </div>
+      <div class="chat-header-actions">
+        <button title="Nova conversa" id="btnNewChatHeader" aria-label="Nova conversa"><svg viewBox="0 0 24 24"><path d="M19 3H4.7C3.6 3 3 3.8 3 4.8V21l3.5-3.5h12.5c1 0 2-1.1 2-2.1V4.8C21 3.8 20 3 19 3z"/></svg></button>
+        <div class="dropdown-wrapper">
+          <button title="Menu" id="btnChatMenu" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M12 7a2 2 0 100-4 2 2 0 000 4zm0 2a2 2 0 100 4 2 2 0 000-4zm0 6a2 2 0 100 4 2 2 0 000-4z"/></svg></button>
+          <div class="dropdown-menu" id="chatDropdown">
+            <button class="dropdown-item" id="menuNewChat2"><svg viewBox="0 0 24 24"><path d="M19 3H4.7C3.6 3 3 3.8 3 4.8V21l3.5-3.5h12.5c1 0 2-1.1 2-2.1V4.8C21 3.8 20 3 19 3z"/></svg><span>Nova conversa</span></button>
+            <button class="dropdown-item" id="menuClearChat2"><svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg><span>Limpar conversa</span></button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" id="menuExport"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg><span>Exportar conversa</span></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="chat-messages" id="chatMessages">
+      <div class="system-message" id="systemMsg">As mensagens deste chat são processadas por inteligência artificial. Este é um sistema de demonstração.</div>
+      <div class="date-divider" id="dateDivider">HOJE</div>
+      <div class="typing-indicator" id="typingIndicator">
+        <div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
+      </div>
+    </div>
+
+    <!-- Scroll to bottom FAB -->
+    <button class="scroll-fab" id="scrollFab" aria-label="Rolar para baixo" title="Novas mensagens">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z" fill="currentColor"/></svg>
+      <span class="scroll-fab-badge" id="scrollFabBadge"></span>
+    </button>
+
+    <footer class="chat-input-area">
+      <button class="btn-emoji" title="Emoji"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zM8.5 8.4a1.4 1.4 0 11-.001 2.799A1.4 1.4 0 018.5 8.4zm7 0a1.4 1.4 0 11-.001 2.799A1.4 1.4 0 0115.5 8.4zM12 17.5c-2 0-3.8-1-4.9-2.5 1.3.6 3 1 4.9 1s3.6-.4 4.9-1c-1.1 1.5-2.9 2.5-4.9 2.5z"/></svg></button>
+      <button class="btn-attach" title="Anexar"><svg viewBox="0 0 24 24"><path d="M1.8 15.6v0c0 1.5.6 2.9 1.6 4s2.5 1.6 4 1.6c1.5 0 2.9-.6 4-1.6l9.5-9.5c.8-.8 1.2-1.8 1.1-2.8-.1-1-.5-1.9-1.3-2.7-1.6-1.6-4.1-1.7-5.5-.3l-7.9 7.9c-.9.9-.8 2.3.2 3.3.5.5 1.1.8 1.7.8.5 0 1-.2 1.4-.6l6-6a.5.5 0 10-.7-.7l-6 6c-.5.5-1.5.4-2.3-.4-.4-.4-.6-.9-.6-1.3 0-.4.3-.8.6-1.1l7.9-7.9c1-1 2.9-.9 4.1.4.6.6.9 1.3 1 2 .1.7-.2 1.4-.8 2l-9.5 9.5a4.4 4.4 0 01-6.2 0 4.4 4.4 0 01-1.3-3.1c0-1.2.5-2.3 1.3-3.1l8.3-8.3a.5.5 0 10-.7-.7l-8.3 8.3A5.4 5.4 0 001.8 15.6z"/></svg></button>
+      <div class="input-wrapper"><textarea id="messageInput" placeholder="Digite uma mensagem" rows="1"></textarea></div>
+      <button class="btn-send" id="sendBtn" title="Enviar"><svg viewBox="0 0 24 24"><path d="M1.1 21.8L23.8 12 1.1 2.3l0 7.9 13.6 1.8-13.6 1.8 0 7.9z"/></svg></button>
+    </footer>
+  </main>
+
+  <!-- Confirm Dialog -->
+  <div class="dialog-overlay" id="dialogOverlay">
+    <div class="dialog-box">
+      <p class="dialog-text" id="dialogText">Deseja iniciar uma nova conversa?</p>
+      <p class="dialog-subtext" id="dialogSubtext">O histórico atual será mantido no servidor.</p>
+      <div class="dialog-actions">
+        <button class="dialog-btn cancel" id="dialogCancel">Cancelar</button>
+        <button class="dialog-btn confirm" id="dialogConfirm">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+</div>
+<script src="app.js?v=3"></script>
+</body>
+</html>
